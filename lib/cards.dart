@@ -3,22 +3,21 @@ import 'package:flutter/material.dart';
 class SingleCard extends StatelessWidget {
   final String imagePath;
   final String name;
-  final double offSet;
+  //add category
+  //add voice
+  //add initial letter
 
   const SingleCard({
     Key key,
     @required this.imagePath,
     @required this.name,
-    @required this.offSet,
   }) : assert(imagePath != null),
       assert(name != null),
-      assert(offSet != null),
       super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(12.0, offSet, 12.0, 12.0),
       height: MediaQuery.of(context).size.width - 24.0,
       decoration: BoxDecoration(
         color: Colors.white,

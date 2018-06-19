@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zoe_vocab/card_swipe.dart';
+import 'package:zoe_vocab/card_deck.dart';
 import 'package:zoe_vocab/cards.dart';
 
 void main() => runApp(new MyApp());
@@ -35,20 +35,6 @@ class _SwipeCardsState extends State<SwipeCards> {
     'Dog',
   ];
 
-  Widget layoutCards(List<SingleCard> cards, int index) {
-    print(index);
-    if (index == 0) {
-      return cards[0];
-    } else {
-      return Stack (
-        children: [
-          layoutCards(cards, index - 1),
-          cards[index],
-        ]
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final cards = <SingleCard>[];
@@ -56,10 +42,9 @@ class _SwipeCardsState extends State<SwipeCards> {
       cards.add(SingleCard(
         imagePath: _imagePaths[i],
         name: _names[i],
-        offSet: (i + 1) * 20.0,
       ));
     }
-    final index = cards.length - 1;
+    cards.shuffle();
 
     return MaterialApp(
       title: 'Flashcards',
@@ -71,53 +56,25 @@ class _SwipeCardsState extends State<SwipeCards> {
         ),
         body: Stack(
           children: [
-            layoutCards(cards, cards.length - 2),
-            CardSwipe(
-              swipeCard: cards[cards.length - 1]
+            Container(
+              child: Center(
+                child: Text(
+                  'All Done!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
-          ],
-        ),
+            CardDeck(
+              cardDeck: cards
+            ),
+          ]
+        )
       )
     );
   }
 }
-
-
-/* class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
-      ),
-      body: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Text(
-              'You have pushed the button this many times:',
-            ),
-            new Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: new Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-*/
