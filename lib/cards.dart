@@ -1,36 +1,30 @@
-import 'package:flutter/material.dart';
+List<StudyCard> cards = [
+  StudyCard('ant', 'animals', 1),
+  StudyCard('bear', 'animals', 1),
+  StudyCard('bird', 'animals', 1),
+  StudyCard('butterfly', 'animals', 3),
+  StudyCard('cat', 'animals', 1),
+  StudyCard('caterpillar', 'animals', 4),
+  StudyCard('apple', 'food', 2),
+  StudyCard('clap', 'actions', 1),
+  StudyCard('crawl', 'actions', 1),
+  StudyCard('dog', 'animals', 1),
+  StudyCard('laugh', 'actions', 1),
+  StudyCard('rotate', 'actions', 2),
+  StudyCard('sitting up', 'actions', 3),
+  StudyCard('smile', 'actions', 1),
+  StudyCard('snowball', 'weather', 2),
+  StudyCard('stop', 'outside', 1),
+  StudyCard('turn on', 'actions', 2),
+  StudyCard('turn off', 'actions', 2),
+  StudyCard('walk', 'actions', 1),
 
-class SingleCard extends StatelessWidget {
-  final String imagePath;
+];
+
+class StudyCard {
   final String name;
-  //add category
-  //add voice
-  //add initial letter
+  final String category;
+  final int syllable;
 
-  const SingleCard({
-    Key key,
-    @required this.imagePath,
-    @required this.name,
-  }) : assert(imagePath != null),
-      assert(name != null),
-      super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.width - 24.0,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(width: 2.0, color: Colors.black),
-        borderRadius: BorderRadius.all(Radius.circular(50.0)),
-        boxShadow: [BoxShadow(color:Colors.black, blurRadius: 20.0)]
-      ),
-      child: Center(
-        child: Image.network(
-          imagePath,
-          fit: BoxFit.contain,
-        ),
-      ),
-    );
-  }
+  const StudyCard(this.name, this.category, this.syllable);
 }
